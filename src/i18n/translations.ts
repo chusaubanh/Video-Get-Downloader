@@ -74,7 +74,11 @@ export const translations = {
         cannotGetInfo: 'Không thể lấy thông tin video',
         downloadError: 'Lỗi khi tải video',
         urlNotAvailable: 'Download URL không khả dụng cho chất lượng này',
-        downloadComplete: 'Đã tải xong:'
+        downloadComplete: 'Đã tải xong:',
+
+        // Disclaimer
+        disclaimerTitle: 'Tuyên bố miễn trừ',
+        disclaimerText: 'Đây là ứng dụng phi lợi nhuận, hoàn toàn miễn phí và không có quảng cáo. Nếu thấy hay hãy chia sẻ và đóng góp nhé.'
     },
     en: {
         // Header
@@ -150,7 +154,11 @@ export const translations = {
         cannotGetInfo: 'Cannot get video info',
         downloadError: 'Download error',
         urlNotAvailable: 'Download URL not available for this quality',
-        downloadComplete: 'Download complete:'
+        downloadComplete: 'Download complete:',
+
+        // Disclaimer
+        disclaimerTitle: 'Disclaimer',
+        disclaimerText: 'This is a non-profit application, free of charge and served with no ads. If you find it useful, please share and contribute.'
     }
 }
 

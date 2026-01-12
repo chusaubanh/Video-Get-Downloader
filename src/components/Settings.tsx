@@ -79,8 +79,8 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                         <button
                             onClick={() => setLocalSettings(prev => ({ ...prev, language: 'vi' }))}
                             className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${localSettings.language === 'vi'
-                                    ? 'bg-gradient-primary text-white'
-                                    : localSettings.darkMode ? 'bg-white/10 text-white/60' : 'bg-gray-100 text-gray-600'
+                                ? 'bg-gradient-primary text-white'
+                                : localSettings.darkMode ? 'bg-white/10 text-white/60' : 'bg-gray-100 text-gray-600'
                                 }`}
                         >
                             🇻🇳 VI
@@ -88,8 +88,8 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                         <button
                             onClick={() => setLocalSettings(prev => ({ ...prev, language: 'en' }))}
                             className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${localSettings.language === 'en'
-                                    ? 'bg-gradient-primary text-white'
-                                    : localSettings.darkMode ? 'bg-white/10 text-white/60' : 'bg-gray-100 text-gray-600'
+                                ? 'bg-gradient-primary text-white'
+                                : localSettings.darkMode ? 'bg-white/10 text-white/60' : 'bg-gray-100 text-gray-600'
                                 }`}
                         >
                             🇺🇸 EN
@@ -149,8 +149,8 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                             placeholder={t.selectFolderPlaceholder}
                             readOnly
                             className={`w-full h-12 px-4 pr-10 rounded-xl border focus:outline-none focus:border-primary-400 ${localSettings.darkMode
-                                    ? 'bg-white/10 border-white/20 text-white placeholder-white/40'
-                                    : 'bg-white border-gray-200 text-gray-800 placeholder-gray-400'
+                                ? 'bg-white/10 border-white/20 text-white placeholder-white/40'
+                                : 'bg-white border-gray-200 text-gray-800 placeholder-gray-400'
                                 }`}
                         />
                         {localSettings.defaultDownloadPath && (
@@ -235,8 +235,8 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                 <button
                     onClick={handleSave}
                     className={`flex-1 py-3 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${saved
-                            ? 'bg-mint-400 text-white'
-                            : 'bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary-500/20'
+                        ? 'bg-mint-400 text-white'
+                        : 'bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary-500/20'
                         }`}
                 >
                     {saved ? (
@@ -255,6 +255,23 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                         </>
                     )}
                 </button>
+            </div>
+
+            {/* Disclaimer */}
+            <div className={`glass-card p-5 border-l-4 ${localSettings.darkMode ? 'border-amber-400 bg-amber-400/10' : 'border-amber-400 bg-amber-50'}`}>
+                <div className="flex items-start gap-3">
+                    <svg className={`w-6 h-6 flex-shrink-0 mt-1 ${localSettings.darkMode ? 'text-amber-400' : 'text-amber-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                        <h3 className={`font-semibold mb-1 ${localSettings.darkMode ? 'text-amber-400' : 'text-amber-600'}`}>
+                            {t.disclaimerTitle}
+                        </h3>
+                        <p className={`text-sm leading-relaxed ${localSettings.darkMode ? 'text-white/80' : 'text-gray-700'}`}>
+                            {t.disclaimerText}
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {/* App info */}

@@ -433,6 +433,16 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
+## ⚖️ Disclaimer / Tuyên bố miễn trừ
+
+**Video-Get-Downloader** is a **non-profit, free, and ad-free application**.
+
+> This tool is created for educational purposes and personal use only. The author is not responsible for any misuse of this software. If you find this app useful, please share it and contribute to the project.
+
+> Đây là ứng dụng phi lợi nhuận, hoàn toàn miễn phí và không có quảng cáo. Công cụ này được tạo ra cho mục đích giáo dục và sử dụng cá nhân. Tác giả không chịu trách nhiệm cho bất kỳ việc sử dụng sai mục đích nào. Nếu thấy hay hãy chia sẻ và đóng góp nhé.
+
+---
+
 ## 🙏 Credits
 
 - **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** - The powerful video download engine
