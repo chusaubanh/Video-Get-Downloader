@@ -1,27 +1,26 @@
-<p align="center">
-  <img src="public/icon.png" alt="Video-Get-Downloader Logo" width="128" height="128">
-</p>
+<div align="center">
 
-<h1 align="center">Video-Get-Downloader</h1>
+<img src="public/icon.png" alt="Video-Get-Downloader Logo" width="128" height="128">
 
-<p align="center">
-  <strong>🎬 Download videos from social media platforms without watermarks</strong>
-</p>
+# Video-Get-Downloader
 
-<p align="center">
-  <a href="https://github.com/chusaubanh/Video-Downloader/releases/latest">
-    <img src="https://img.shields.io/github/v/release/chusaubanh/Video-Downloader?style=for-the-badge&logo=github&color=blue" alt="Latest Release">
-  </a>
-  <a href="https://github.com/chusaubanh/Video-Downloader/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/chusaubanh/Video-Downloader?style=for-the-badge&color=green" alt="License">
-  </a>
-  <a href="https://github.com/chusaubanh/Video-Downloader/stargazers">
-    <img src="https://img.shields.io/github/stars/chusaubanh/Video-Downloader?style=for-the-badge&logo=github&color=yellow" alt="Stars">
-  </a>
-  <a href="https://github.com/chusaubanh/Video-Downloader/releases">
-    <img src="https://img.shields.io/github/downloads/chusaubanh/Video-Downloader/total?style=for-the-badge&logo=github&color=purple" alt="Downloads">
-  </a>
-</p>
+**Tải video đa nền tảng - Không Watermark - MIỄN PHÍ & KHÔNG QUẢNG CÁO**
+**Cross-platform video downloader - No Watermark - FREE & AD-FREE**
+
+[![Latest Release](https://img.shields.io/github/v/release/chusaubanh/Video-Downloader?style=for-the-badge&logo=github&color=blue)](https://github.com/chusaubanh/Video-Downloader/releases/latest)
+[![License](https://img.shields.io/github/license/chusaubanh/Video-Downloader?style=for-the-badge&color=green)](https://github.com/chusaubanh/Video-Downloader/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/chusaubanh/Video-Downloader/total?style=for-the-badge&logo=github&color=purple)](https://github.com/chusaubanh/Video-Downloader/releases)
+
+---
+
+### 📥 DOWNLOAD LATEST VERSION (TẢI VỀ)
+
+| <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg" width="30"/> **Windows** | <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" width="30"/> **macOS** | <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" width="30"/> **Linux** |
+| :---: | :---: | :---: |
+| [**Download .exe**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-Setup-1.0.0.exe)<br/>*(Installer)* | [**Download .dmg**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-1.0.0.dmg)<br/>*(Apple Silicon & Intel)* | [**Download .AppImage**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-1.0.0-linux-amd64.AppImage)<br/>*(Portable)* |
+
+---
+</div>
 
 <p align="center">
   <a href="#-features">Features</a> •
