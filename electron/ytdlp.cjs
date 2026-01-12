@@ -6,23 +6,44 @@ let currentProcess = null
 
 // Get yt-dlp executable path
 function getYtDlpPath() {
+    const { app } = require('electron')
     const binName = process.platform === 'win32' ? 'yt-dlp.exe' : 'yt-dlp'
+    const isPackaged = app ? app.isPackaged : false
 
-    // Check if bundled in same directory
-    const bundledPath = path.join(__dirname, binName)
-    if (fs.existsSync(bundledPath)) {
-        return bundledPath
+    // List of possible paths to check
+    const possiblePaths = []
+
+    // 1. Check in extraResources (for packaged app - new location)
+    if (process.resourcesPath) {
+        possiblePaths.push(path.join(process.resourcesPath, binName))
     }
 
-    // Check in resources folder (for packaged app)
-    const resourcesPath = path.join(process.resourcesPath || '', 'app', 'electron', binName)
-    if (fs.existsSync(resourcesPath)) {
-        return resourcesPath
+    // 2. Check in same directory as electron files (development)
+    possiblePaths.push(path.join(__dirname, binName))
+
+    // 3. Check in resources/app/electron folder (alternative packaged structure)
+    if (process.resourcesPath) {
+        possiblePaths.push(path.join(process.resourcesPath, 'app', 'electron', binName))
     }
 
-    // Use system yt-dlp
+    // 4. Check in app.asar.unpacked (if asar unpacking is used)
+    if (process.resourcesPath) {
+        possiblePaths.push(path.join(process.resourcesPath, 'app.asar.unpacked', 'electron', binName))
+    }
+
+    // Try each path
+    for (const checkPath of possiblePaths) {
+        if (fs.existsSync(checkPath)) {
+            console.log('Found yt-dlp at:', checkPath)
+            return checkPath
+        }
+    }
+
+    // Fallback: use system yt-dlp
+    console.log('Using system yt-dlp:', binName)
     return binName
 }
+
 
 // Detect platform from URL
 function detectPlatform(url) {

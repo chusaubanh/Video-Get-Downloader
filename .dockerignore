@@ -1,0 +1,44 @@
+# Docker ignore file for Video-Get-Downloader
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+release/
+dist-electron/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test files
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+
+# Documentation files that aren't needed for build
+*.md
+!README.md
+screenshots/
+
+# TypeScript build info
+*.tsbuildinfo

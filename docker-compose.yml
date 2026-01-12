@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Build service for creating installers
+  builder:
+    build: .
+    container_name: video-downloader-builder
+    volumes:
+      # Mount the release directory to get build outputs
+      - ./release:/app/release
+      # Mount source for development (optional)
+      - ./src:/app/src:ro
+      - ./electron:/app/electron:ro
+      - ./public:/app/public:ro
+    environment:
+      - NODE_ENV=production
+      - DEBUG=electron-builder
+    command: npm run electron:build:all
+
+  # Windows-only build
+  build-win:
+    build: .
+    container_name: video-downloader-build-win
+    volumes:
+      - ./release:/app/release
+    command: npm run electron:build:win
+
+  # MacOS-only build (requires macOS host for signing)
+  build-mac:
+    build: .
+    container_name: video-downloader-build-mac
+    volumes:
+      - ./release:/app/release
+    command: npm run electron:build:mac
+
+  # Linux-only build
+  build-linux:
+    build: .
+    container_name: video-downloader-build-linux
+    volumes:
+      - ./release:/app/release
+    command: npm run electron:build:linux
