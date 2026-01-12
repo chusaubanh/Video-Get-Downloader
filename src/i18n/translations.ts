@@ -89,7 +89,15 @@ export const translations = {
         downloadingUpdate: 'Đang tải bản cập nhật...',
         updateDownloaded: 'Đã tải xong. Khởi động lại để cài đặt.',
         restartToUpdate: 'Khởi động lại ngay',
-        updateError: 'Lỗi cập nhật'
+        updateError: 'Lỗi cập nhật',
+
+        // Core Update
+        updateCoreTitle: 'Cập nhật Core tải xuống',
+        updateCoreDesc: 'Cập nhật thành phần tải xuống (yt-dlp) để sửa lỗi',
+        updateCoreBtn: 'Cập nhật Core',
+        updatingCore: 'Đang cập nhật...',
+        coreUpdated: 'Core đã được cập nhật!',
+        coreUpdateError: 'Lỗi cập nhật Core'
     },
     en: {
         // ... (existing translations)
@@ -107,7 +115,15 @@ export const translations = {
         downloadingUpdate: 'Downloading update...',
         updateDownloaded: 'Update downloaded. Restart to install.',
         restartToUpdate: 'Restart Now',
-        updateError: 'Update error'
+        updateError: 'Update error',
+
+        // Core Update
+        updateCoreTitle: 'Update Download Core',
+        updateCoreDesc: 'Update downloading component (yt-dlp) to fix errors',
+        updateCoreBtn: 'Update Core',
+        updatingCore: 'Updating...',
+        coreUpdated: 'Core updated!',
+        coreUpdateError: 'Core Update Error'
     }
 }
 

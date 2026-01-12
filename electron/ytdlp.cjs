@@ -221,8 +221,40 @@ function cancelDownload() {
     }
 }
 
+// Update yt-dlp binary
+function updateBinary() {
+    return new Promise((resolve, reject) => {
+        const ytdlp = getYtDlpPath()
+        console.log('Updating yt-dlp at:', ytdlp)
+
+        const process = spawn(ytdlp, ['-U'])
+        let output = ''
+
+        process.stdout.on('data', (data) => {
+            output += data.toString()
+        })
+
+        process.stderr.on('data', (data) => {
+            output += data.toString()
+        })
+
+        process.on('close', (code) => {
+            if (code === 0) {
+                resolve(output)
+            } else {
+                reject(new Error(`Cập nhật thất bại: ${output}`))
+            }
+        })
+
+        process.on('error', (err) => {
+            reject(new Error(`Lỗi khi chạy updater: ${err.message}`))
+        })
+    })
+}
+
 module.exports = {
     getVideoInfo,
     downloadVideo,
-    cancelDownload
+    cancelDownload,
+    updateBinary
 }

@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron')
 const path = require('path')
 const { autoUpdater } = require('electron-updater')
-const { downloadVideo, getVideoInfo, cancelDownload } = require('./ytdlp.cjs')
+const { downloadVideo, getVideoInfo, cancelDownload, updateBinary } = require('./ytdlp.cjs')
 
 let mainWindow = null
 let isDev = process.env.NODE_ENV === 'development' || !app.isPackaged
@@ -176,6 +176,16 @@ ipcMain.handle('download-video', async (event, videoId, formatId, savePath) => {
 // Cancel download
 ipcMain.handle('cancel-download', () => {
     cancelDownload()
+})
+
+// Update yt-dlp core
+ipcMain.handle('update-core-ytdlp', async () => {
+    try {
+        const result = await updateBinary()
+        return { success: true, message: result }
+    } catch (error) {
+        throw new Error(error.message || 'Cập nhật Core thất bại')
+    }
 })
 
 // Select folder

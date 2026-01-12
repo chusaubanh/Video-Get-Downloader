@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     downloadVideo: (videoId, formatId, savePath) =>
         ipcRenderer.invoke('download-video', videoId, formatId, savePath),
     cancelDownload: () => ipcRenderer.invoke('cancel-download'),
+    updateCore: () => ipcRenderer.invoke('update-core-ytdlp'),
 
     // File operations
     selectFolder: () => ipcRenderer.invoke('select-folder'),

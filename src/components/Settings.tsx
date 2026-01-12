@@ -26,6 +26,10 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
     const [updateInfo, setUpdateInfo] = useState<any>(null)
     const [updateProgress, setUpdateProgress] = useState<any>(null)
 
+    // Core update state
+    const [updatingCore, setUpdatingCore] = useState(false)
+    const [coreUpdated, setCoreUpdated] = useState(false)
+
     const t = translations[localSettings.language]
 
     useEffect(() => {
@@ -84,6 +88,21 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
     const handleRestartToUpdate = () => {
         if (window.electronAPI) {
             window.electronAPI.quitAndInstall()
+        }
+    }
+
+    const handleUpdateCore = async () => {
+        if (!window.electronAPI) return
+        setUpdatingCore(true)
+        try {
+            await window.electronAPI.updateCore()
+            setCoreUpdated(true)
+            setTimeout(() => setCoreUpdated(false), 3000)
+        } catch (error) {
+            console.error(error)
+            alert(t.coreUpdateError)
+        } finally {
+            setUpdatingCore(false)
         }
     }
 
@@ -382,6 +401,54 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                         </button>
                     )}
                 </div>
+            </div>
+
+            {/* Core Update */}
+            <div className={`glass-card p-5 ${localSettings.darkMode ? '!bg-white/10 !border-white/10' : ''}`}>
+                <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">
+                            <svg className="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p className={`font-medium ${localSettings.darkMode ? 'text-white' : 'text-gray-800'}`}>{t.updateCoreTitle}</p>
+                            <p className={`text-sm ${localSettings.darkMode ? 'text-white/50' : 'text-gray-500'}`}>
+                                {t.updateCoreDesc}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    onClick={handleUpdateCore}
+                    disabled={updatingCore}
+                    className={`w-full py-2.5 rounded-xl font-medium transition-all mt-2 flex items-center justify-center gap-2 ${coreUpdated
+                            ? 'bg-green-500 text-white'
+                            : updatingCore
+                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : localSettings.darkMode
+                                    ? 'bg-white/10 text-white hover:bg-white/20'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                >
+                    {updatingCore ? (
+                        <>
+                            <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                            {t.updatingCore}
+                        </>
+                    ) : coreUpdated ? (
+                        <>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            {t.coreUpdated}
+                        </>
+                    ) : (
+                        t.updateCoreBtn
+                    )}
+                </button>
             </div>
 
             {/* Disclaimer */}

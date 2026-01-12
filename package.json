@@ -1,7 +1,7 @@
 {
   "name": "video-get-downloader",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Video-Get-Downloader - Download videos from social media without watermark",
   "author": "ChuSauBanh",
   "license": "MIT",
