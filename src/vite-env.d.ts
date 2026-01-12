@@ -45,6 +45,18 @@ interface ElectronAPI {
     // Events
     onDownloadProgress: (callback: (progress: DownloadProgress) => void) => void
     removeDownloadProgressListener: () => void
+
+    // Update operations
+    checkForUpdates: () => Promise<void>
+    downloadUpdate: () => Promise<void>
+    quitAndInstall: () => Promise<void>
+    getAppVersion: () => Promise<string>
+    updateCore: () => Promise<string>
+
+    // Update listeners
+    onUpdateStatus: (callback: (status: any) => void) => void
+    onUpdateDownloadProgress: (callback: (progress: any) => void) => void
+    removeUpdateListeners: () => void
 }
 
 declare global {

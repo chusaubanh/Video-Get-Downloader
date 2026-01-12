@@ -25,6 +25,7 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
     const [updateStatus, setUpdateStatus] = useState<string>('idle')
     const [updateInfo, setUpdateInfo] = useState<any>(null)
     const [updateProgress, setUpdateProgress] = useState<any>(null)
+    const [appVersion, setAppVersion] = useState('1.2.0')
 
     // Core update state
     const [updatingCore, setUpdatingCore] = useState(false)
@@ -65,11 +66,14 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
         window.electronAPI.onUpdateStatus(statusHandler)
         window.electronAPI.onUpdateDownloadProgress(progressHandler)
 
+        // Get app version
+        window.electronAPI.getAppVersion().then(ver => setAppVersion(ver))
+
         // Check for updates on mount (optional, or rely on manual check)
         // window.electronAPI.checkForUpdates()
 
         return () => {
-            window.electronAPI.removeUpdateListeners()
+            window.electronAPI?.removeUpdateListeners()
         }
     }, [])
 
@@ -338,7 +342,7 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                         <div>
                             <p className={`font-medium ${localSettings.darkMode ? 'text-white' : 'text-gray-800'}`}>Software Update</p>
                             <p className={`text-sm ${localSettings.darkMode ? 'text-white/50' : 'text-gray-500'}`}>
-                                {updateStatus === 'idle' && t.version + ' 1.0.0'}
+                                {updateStatus === 'idle' && t.version + ' ' + appVersion}
                                 {updateStatus === 'checking' && t.checkingForUpdates}
                                 {updateStatus === 'not-available' && t.updateNotAvailable}
                                 {updateStatus === 'available' && t.updateAvailable + ' ' + (updateInfo?.version || '')}
@@ -425,12 +429,12 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                     onClick={handleUpdateCore}
                     disabled={updatingCore}
                     className={`w-full py-2.5 rounded-xl font-medium transition-all mt-2 flex items-center justify-center gap-2 ${coreUpdated
-                            ? 'bg-green-500 text-white'
-                            : updatingCore
-                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                : localSettings.darkMode
-                                    ? 'bg-white/10 text-white hover:bg-white/20'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-green-500 text-white'
+                        : updatingCore
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            : localSettings.darkMode
+                                ? 'bg-white/10 text-white hover:bg-white/20'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                 >
                     {updatingCore ? (
@@ -478,7 +482,7 @@ function Settings({ isOpen, onClose, onSettingsChange, embedded = false, setting
                     </div>
                     <span className={`font-semibold ${localSettings.darkMode ? 'text-white' : 'text-gray-800'}`}>Video-Get-Downloader</span>
                 </div>
-                <p className={`text-sm ${localSettings.darkMode ? 'text-white/50' : 'text-gray-500'}`}>{t.version} 1.0.0</p>
+                <p className={`text-sm ${localSettings.darkMode ? 'text-white/50' : 'text-gray-500'}`}>{t.version} {appVersion}</p>
                 <p className={`text-xs mt-1 ${localSettings.darkMode ? 'text-white/40' : 'text-gray-400'}`}>{t.poweredBy} <span className="gradient-text font-medium">ChuSauBanh</span></p>
             </div>
         </div>

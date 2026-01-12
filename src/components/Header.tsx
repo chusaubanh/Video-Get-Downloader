@@ -1,4 +1,5 @@
 import PlatformBadge from './PlatformBadge'
+import appIcon from '/icon.png'
 
 interface HeaderProps {
     darkMode: boolean
@@ -27,7 +28,7 @@ function Header({ darkMode, t }: HeaderProps) {
                     {/* Logo with icon */}
                     <div className="relative">
                         <img
-                            src="/icon.png"
+                            src={appIcon}
                             alt="Videos-Get-Downloader Logo"
                             className="w-9 h-9 object-contain rounded-full shadow-lg"
                         />

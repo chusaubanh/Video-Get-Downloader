@@ -7,7 +7,7 @@ let currentProcess = null
 // Get yt-dlp executable path
 function getYtDlpPath() {
     const { app } = require('electron')
-    const binName = process.platform === 'win32' ? 'yt-dlp.exe' : 'yt-dlp'
+    const binName = process.platform === 'win32' ? 'yt-dlp-core.exe' : 'yt-dlp'
     const isPackaged = app ? app.isPackaged : false
 
     // List of possible paths to check
