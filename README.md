@@ -17,7 +17,7 @@
 
 | <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg" width="30"/> **Windows** | <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" width="30"/> **macOS** | <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" width="30"/> **Linux** |
 | :---: | :---: | :---: |
-| [**Download .exe**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-Setup-1.2.4.exe)<br/>*(Installer)* | [**Download .dmg**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-1.2.4.dmg)<br/>*(Apple Silicon & Intel)* | [**Download .AppImage**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-1.2.4-linux-amd64.AppImage)<br/>*(Portable)* |
+| [**Download .exe**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-Setup-1.2.5.exe)<br/>*(Installer)* | [**Download .dmg**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-1.2.5.dmg)<br/>*(Apple Silicon & Intel)* | [**Download .AppImage**](https://github.com/chusaubanh/Video-Downloader/releases/latest/download/Video-Get-Downloader-1.2.5-linux-amd64.AppImage)<br/>*(Portable)* |
 
 ---
 </div>
