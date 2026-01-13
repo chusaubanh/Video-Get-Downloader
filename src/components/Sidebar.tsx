@@ -6,10 +6,11 @@ interface SidebarProps {
     historyCount: number
     defaultPath: string
     darkMode: boolean
+    version: string
     t: any
 }
 
-function Sidebar({ activeTab, onTabChange, historyCount, defaultPath, darkMode, t }: SidebarProps) {
+function Sidebar({ activeTab, onTabChange, historyCount, defaultPath, darkMode, version, t }: SidebarProps) {
     const [isCollapsed, setIsCollapsed] = useState(false)
 
     const menuItems = [
@@ -93,8 +94,8 @@ function Sidebar({ activeTab, onTabChange, historyCount, defaultPath, darkMode, 
                                     </span>
                                     {item.badge && (
                                         <span className={`px-2 py-0.5 rounded-full text-xs ${activeTab === item.id
-                                                ? 'bg-white/20'
-                                                : darkMode ? 'bg-white/10 text-white/60' : 'bg-primary-100 text-primary-600'
+                                            ? 'bg-white/20'
+                                            : darkMode ? 'bg-white/10 text-white/60' : 'bg-primary-100 text-primary-600'
                                             }`}>
                                             {item.badge}
                                         </span>
@@ -130,7 +131,7 @@ function Sidebar({ activeTab, onTabChange, historyCount, defaultPath, darkMode, 
                 {/* App info */}
                 {!isCollapsed && (
                     <div className="pt-3 text-center">
-                        <p className={`text-xs ${darkMode ? 'text-white/40' : 'text-gray-400'}`}>v1.0.0</p>
+                        <p className={`text-xs ${darkMode ? 'text-white/40' : 'text-gray-400'}`}>v{version}</p>
                         <p className={`text-xs mt-1 ${darkMode ? 'text-white/40' : 'text-gray-400'}`}>{t.poweredBy} <span className="gradient-text font-medium">ChuSauBanh</span></p>
                     </div>
                 )}

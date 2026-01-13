@@ -163,9 +163,9 @@ ipcMain.handle('get-video-info', async (event, url) => {
 })
 
 // Download video
-ipcMain.handle('download-video', async (event, videoId, formatId, savePath) => {
+ipcMain.handle('download-video', async (event, videoId, formatId, savePath, mergeAudio) => {
     try {
-        await downloadVideo(videoId, formatId, savePath, (progress) => {
+        await downloadVideo(videoId, formatId, savePath, mergeAudio, (progress) => {
             mainWindow?.webContents.send('download-progress', progress)
         })
         return { success: true }

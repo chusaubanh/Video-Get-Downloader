@@ -96,7 +96,8 @@ async function getVideoInfo(url) {
                         formatId: f.format_id,
                         quality: f.height ? `${f.height}p` : f.format_note || 'Unknown',
                         ext: f.ext,
-                        filesize: f.filesize || f.filesize_approx
+                        filesize: f.filesize || f.filesize_approx,
+                        hasAudio: f.acodec !== 'none' && f.acodec !== undefined
                     }))
                     .sort((a, b) => {
                         const getHeight = (q) => parseInt(q.quality) || 0
@@ -110,7 +111,8 @@ async function getVideoInfo(url) {
                         formatId: 'best',
                         quality: 'Best',
                         ext: 'mp4',
-                        filesize: null
+                        filesize: null,
+                        hasAudio: true
                     })
                 }
 
@@ -150,12 +152,53 @@ function formatDuration(seconds) {
 }
 
 // Download video
-async function downloadVideo(videoId, formatId, savePath, onProgress) {
+async function downloadVideo(videoId, formatId, savePath, mergeAudio = false, onProgress) {
+    try {
+        await runDownloadProcess(videoId, formatId, savePath, mergeAudio, onProgress)
+    } catch (error) {
+        // Fallback logic
+        console.error('Download error:', error.message)
+
+        // If we were trying to merge or use a specific format and it failed,
+        // it's likely due to missing ffmpeg or unavailable format.
+        // Retry with 'best' (single file with audio)
+        if (mergeAudio || formatId !== 'best') {
+            console.log('Retrying with "best" format...')
+            onProgress({
+                percent: 0,
+                speed: '0 MB/s',
+                eta: 'Retry...',
+                downloaded: '0 MB',
+                total: '0 MB'
+            })
+
+            try {
+                await runDownloadProcess(videoId, 'best', savePath, false, onProgress)
+            } catch (retryError) {
+                // If fallback also fails, throw original error
+                throw new Error(`Tải video thất bại: ${error.message}`)
+            }
+        } else {
+            throw error
+        }
+    }
+}
+
+// Internal function to run yt-dlp process
+function runDownloadProcess(videoId, formatId, savePath, mergeAudio, onProgress) {
     return new Promise((resolve, reject) => {
         const ytdlp = getYtDlpPath()
 
+        // Determine format string
+        let formatString = formatId
+        if (formatId === 'best') {
+            formatString = 'bestvideo+bestaudio/best' // Attempt merge if ffmpeg exists, else best
+        } else if (mergeAudio) {
+            formatString = `${formatId}+bestaudio/best`
+        }
+
         const args = [
-            '-f', formatId === 'best' ? 'best[ext=mp4]/best' : formatId,
+            '-f', formatString,
             '--merge-output-format', 'mp4',
             '--no-playlist',
             '-o', path.join(savePath, '%(title)s.%(ext)s'),
@@ -165,6 +208,7 @@ async function downloadVideo(videoId, formatId, savePath, onProgress) {
         ]
 
         currentProcess = spawn(ytdlp, args)
+        let stderr = ''
 
         currentProcess.stdout.on('data', (data) => {
             const line = data.toString()
@@ -187,7 +231,9 @@ async function downloadVideo(videoId, formatId, savePath, onProgress) {
         })
 
         currentProcess.stderr.on('data', (data) => {
-            console.error('yt-dlp stderr:', data.toString())
+            const dataStr = data.toString()
+            stderr += dataStr
+            console.error('yt-dlp stderr:', dataStr)
         })
 
         currentProcess.on('close', (code) => {
@@ -202,7 +248,7 @@ async function downloadVideo(videoId, formatId, savePath, onProgress) {
                 })
                 resolve()
             } else {
-                reject(new Error('Tải video thất bại'))
+                reject(new Error(stderr || 'Tải video thất bại'))
             }
         })
 

@@ -36,7 +36,7 @@ interface ElectronAPI {
 
     // Video operations
     getVideoInfo: (url: string) => Promise<VideoInfo>
-    downloadVideo: (videoId: string, formatId: string, savePath: string) => Promise<void>
+    downloadVideo: (videoId: string, formatId: string, savePath: string, mergeAudio?: boolean) => Promise<void>
     cancelDownload: () => Promise<void>
 
     // File operations

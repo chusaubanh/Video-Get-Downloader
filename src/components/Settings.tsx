@@ -32,7 +32,7 @@ const Settings = ({
     const [updateStatus, setUpdateStatus] = useState<string>('idle')
     const [updateInfo, setUpdateInfo] = useState<any>(null)
     const [updateProgress, setUpdateProgress] = useState<any>(null)
-    const [appVersion, setAppVersion] = useState('1.2.6')
+    const [appVersion, setAppVersion] = useState('...')
 
     // Core update state
     const [updatingCore, setUpdatingCore] = useState(false)

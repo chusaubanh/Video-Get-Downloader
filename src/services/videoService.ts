@@ -19,6 +19,7 @@ interface VideoFormat {
     ext: string
     filesize?: number
     downloadUrl?: string
+    hasAudio?: boolean
 }
 
 // Detect platform from URL

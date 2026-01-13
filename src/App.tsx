@@ -49,10 +49,20 @@ function App() {
         const saved = localStorage.getItem('downloadHistory')
         return saved ? JSON.parse(saved) : []
     })
+    const [appVersion, setAppVersion] = useState('1.0.0')
 
     const isElectron = !!window.electronAPI
     const t = translations[settings.language]
 
+    useEffect(() => {
+        const getVersion = async () => {
+            if (window.electronAPI) {
+                const ver = await window.electronAPI.getAppVersion()
+                setAppVersion(ver)
+            }
+        }
+        getVersion()
+    }, [])
     const handleURLSubmit = async (url: string) => {
         setIsLoading(true)
         setError(null)
@@ -84,7 +94,12 @@ function App() {
                         setDownloadProgress(progress)
                     })
 
-                    await window.electronAPI!.downloadVideo(videoInfo.originalUrl || videoInfo.id, format.formatId, savePath)
+                    await window.electronAPI!.downloadVideo(
+                        videoInfo.originalUrl || videoInfo.id,
+                        format.formatId,
+                        savePath,
+                        format.hasAudio === false && format.formatId !== 'best'
+                    )
                     addToHistory(videoInfo, savePath)
 
                     if (settings.showNotifications && 'Notification' in window) {
@@ -319,6 +334,7 @@ function App() {
                         historyCount={history.length}
                         defaultPath={settings.defaultDownloadPath}
                         darkMode={settings.darkMode}
+                        version={appVersion}
                         t={t}
                     />
 

@@ -9,8 +9,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
     // Video operations
     getVideoInfo: (url) => ipcRenderer.invoke('get-video-info', url),
-    downloadVideo: (videoId, formatId, savePath) =>
-        ipcRenderer.invoke('download-video', videoId, formatId, savePath),
+    downloadVideo: (videoId, formatId, savePath, mergeAudio) =>
+        ipcRenderer.invoke('download-video', videoId, formatId, savePath, mergeAudio),
     cancelDownload: () => ipcRenderer.invoke('cancel-download'),
     updateCore: () => ipcRenderer.invoke('update-core-ytdlp'),
     getSettings: () => ipcRenderer.invoke('get-settings'),

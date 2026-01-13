@@ -281,34 +281,43 @@ Copy the video URL from your browser or app:
 - **npm** 9.0.0 or higher
 - **Git**
 
-### Quick Build
+### Quick Start (Run Locally / Chạy trực tiếp từ Source)
+If you want to run the app without installing (Developer Mode):
 
-```bash
-# Clone the repository
-git clone https://github.com/chusaubanh/Video-Downloader.git
-cd Video-Downloader
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/chusaubanh/Video-Downloader.git
+   cd Video-Downloader
+   ```
 
-# Install dependencies
-npm install
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-# Download yt-dlp binary
-# Windows:
-curl -L -o electron/yt-dlp.exe https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
+3. **Download yt-dlp binary (Important!)**:
+   The app needs `yt-dlp` executable in the `electron/` folder to work.
+   
+   **Windows**:
+   Download [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe) and put it into `electron/` folder.
+   
+   *Or via command line:*
+   ```powershell
+   curl -L -o electron/yt-dlp.exe https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
+   ```
 
-# macOS:
-curl -L -o electron/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos
-chmod +x electron/yt-dlp
+   **macOS / Linux**:
+   ```bash
+   curl -L -o electron/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos
+   # For Linux: replace "yt-dlp_macos" with "yt-dlp" in URL
+   chmod +x electron/yt-dlp
+   ```
 
-# Linux:
-curl -L -o electron/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
-chmod +x electron/yt-dlp
-
-# Run in development mode
-npm run electron:dev
-
-# Build for your platform
-npm run electron:build
-```
+4. **Run the App**:
+   ```bash
+   npm run electron:dev
+   ```
+   *The app will launch in development mode.*
 
 ### Build Commands
 
